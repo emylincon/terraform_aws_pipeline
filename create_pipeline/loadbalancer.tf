@@ -4,7 +4,7 @@ resource "aws_lb" "loadbalancer" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.allow_http.id]
-  subnets            = ["subnet-78ab3600", "subnet-2bea5461", "subnet-facca0a7"] #[aws_subnet.public_subnet[0].id, aws_subnet.public_subnet[1].id] #[for s in data.aws_subnet.example : s.cidr_block]
+  subnets            = [aws_subnet.public_subnet[0].id, aws_subnet.public_subnet[1].id] #["subnet-78ab3600", "subnet-2bea5461", "subnet-facca0a7"] #[for s in data.aws_subnet.example : s.cidr_block]
 
   enable_deletion_protection = false
 
@@ -17,7 +17,7 @@ resource "aws_lb_target_group" "lb_target" {
   name     = "tf-example-lb-tg"
   port     = 80
   protocol = "HTTP"
-  vpc_id   = var.vpc_default_id #aws_vpc.web_vpc.id #var.vpc_default_id
+  vpc_id   = aws_vpc.web_vpc.id #var.vpc_default_id # # aws_vpc.web_vpc.id
 }
 
 resource "aws_lb_listener" "front_end" {
@@ -35,7 +35,7 @@ resource "aws_lb_listener" "front_end" {
 resource "aws_security_group" "allow_http" {
   name        = "allow_http"
   description = "Allow HTTP inbound traffic"
-  vpc_id      = var.vpc_default_id #aws_vpc.web_vpc.id #var.vpc_default_id
+  vpc_id      = aws_vpc.web_vpc.id #aws_vpc.web_vpc.id # #var.vpc_default_id
 
   ingress = [
     {

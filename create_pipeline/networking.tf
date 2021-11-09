@@ -43,10 +43,11 @@ resource "aws_route_table" "public_rt" {
 # Subnets with routes to the internet
 resource "aws_subnet" "public_subnet" {
   # Use the count meta-parameter to create multiple copies
-  count             = 2
-  vpc_id            = aws_vpc.web_vpc.id
-  cidr_block        = cidrsubnet(var.cidr_block, 2, count.index + 2)
-  availability_zone = element(var.availability_zones, count.index)
+  count                   = 2
+  vpc_id                  = aws_vpc.web_vpc.id
+  cidr_block              = cidrsubnet(var.cidr_block, 2, count.index + 2)
+  availability_zone       = element(var.availability_zones, count.index)
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "Public Subnet ${count.index + 1}"

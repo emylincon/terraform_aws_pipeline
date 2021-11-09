@@ -97,7 +97,7 @@ resource "aws_launch_configuration" "ecs_launch_config" {
 
 resource "aws_autoscaling_group" "ecs_auto_scaling_group" {
   name                 = "asg"
-  vpc_zone_identifier  = ["subnet-78ab3600"] #[aws_subnet.public_subnet[0].id] 
+  vpc_zone_identifier  = [aws_subnet.public_subnet[0].id] #["subnet-78ab3600"] #
   launch_configuration = aws_launch_configuration.ecs_launch_config.name
 
   desired_capacity          = 1
