@@ -1,4 +1,2 @@
-./create_pipeline/emeka.ac
-./create_pipeline/.terraform*
-./create_state_bucket/.terraform*
-.terraform*
+create_pipeline/emeka.ac
+*terraform*
