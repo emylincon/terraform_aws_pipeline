@@ -3,7 +3,7 @@ resource "aws_lb" "loadbalancer" {
   name               = "test-lb-tf"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.allow_http.id]
+  security_groups    = [aws_security_group.allow_elb.id]
   subnets            = [aws_subnet.public_subnet[0].id, aws_subnet.public_subnet[1].id] #["subnet-78ab3600", "subnet-2bea5461", "subnet-facca0a7"] #[for s in data.aws_subnet.example : s.cidr_block]
 
   enable_deletion_protection = false
