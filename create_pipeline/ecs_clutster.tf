@@ -91,7 +91,7 @@ resource "aws_launch_configuration" "ecs_launch_config" {
   iam_instance_profile = aws_iam_instance_profile.ecs_agent.name
   security_groups      = [aws_security_group.allow_ecs.id]
   user_data            = "#!/bin/bash\necho ECS_CLUSTER=${aws_ecs_cluster.python_app_cluster.name} >> /etc/ecs/ecs.config"
-  instance_type        = "t2.micro"
+  instance_type        = "t2.medium"
   # auto assign public IP
 }
 
