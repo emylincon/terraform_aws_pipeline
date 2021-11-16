@@ -7,7 +7,7 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME
-      - echo running unit
+      - echo running unit test
       - docker run -w /app -v ${PWD}:/app python:3.7 pip3 install -r requirements.txt ; python3 -m unittest test_app.py # run unit test
   build:
     commands:
