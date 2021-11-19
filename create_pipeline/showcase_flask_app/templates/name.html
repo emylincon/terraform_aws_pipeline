@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Team Tardis | {{ name }}'s page{% endblock %}
+    {% block content %}
+    <p style="text-align:center;"> This is {{ name }}'s page. </p>
+    {% if name == 'Emeka' %}
+    <img class="rounded mx-auto d-block" src="{{ url_for('static', filename='emeka.jpeg') }}" alt="emeka" style="width:30%">
+    <p style="text-align:center;" >PhD fellow at London South Bank University. The research focus is on Edge Intelligence and cloud 
+        resource management in 5G. Other interests include cloud service orchestration, 
+        softwarization, Data science and IoT.</p>
+
+    {% elif name == 'Callum' %}
+    <img class="rounded mx-auto d-block" src="{{ url_for('static', filename='callum.png') }}" alt="callum" style="width:30%">
+    <p style="text-align:center;">Callum graduated with a masters in Physics from the University of Cambridge. He enjoys choral singing and playing the violin.</p> 
+    <p style="text-align:center;">His first experience of Software Engineering was during his degree where he wrote a computer simulation to investigate biological viral coinfection. He was even able to use a supercomputer!</p>
+    
+    {% elif name == 'Kevin' %}
+    <img class="rounded mx-auto d-block" src="{{ url_for('static', filename='kevin.jpeg') }}" alt="kevin" style="width:30%">
+    <p style="text-align:center;">Kevin recently graduated with masters in Electronic Engineering from the University of Surrey.</p>
+    <p style="text-align:center;">He has also competed semi-professionally as a boxer and is a big fan of Dr Who. </p>
+    
+    {% elif name == 'Will' %}
+    <img class="rounded mx-auto d-block" src="{{ url_for('static', filename='will.jpeg') }}" alt="will" style="width:30%">
+    <p style="text-align:center;"> Will graduated with a degree in Marine Zoology and spent a year in the maritime industry as a deckhand. During the COVID-19 pandemic, he taught himself to code and is looking forward to getting started at Sky.</p>
+    <p style="text-align:center;"> He is an avid classical guitarist and would love to perform any song requests you have!</p>
+    {% else %}
+
+    {% endif %}
+
+    {% endblock %}
