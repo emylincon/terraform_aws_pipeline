@@ -15,6 +15,9 @@ phases:
       - echo Building the Docker image...
       - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - echo scanning image for vunerability
+      - docker run --rm -v /root/.cache/:/root/.cache/ aquasec/trivy:0.18.3 --exit-code=1 $IMAGE_REPO_NAME:$IMAGE_TAG
+
   post_build:
     commands:
       - echo Build completed on `date`
