@@ -21,6 +21,11 @@ terraform init
 terraform apply
 ```
 
+## Get ECS Image AMI for your region
+```bash
+aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/recommended
+```
+
 ## Configure git codecommit credentials
 ```
 aws configure  # fill in credentials
@@ -43,5 +48,5 @@ git push origin master
 terraform workspace list
 ```
 ```
-terraform workspace create 
+terraform workspace create
 ```

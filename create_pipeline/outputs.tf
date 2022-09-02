@@ -14,4 +14,3 @@ output "code_commit_repo" {
 output "elb" {
   value = aws_lb.loadbalancer.dns_name
 }
-
