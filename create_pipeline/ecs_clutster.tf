@@ -70,24 +70,9 @@ resource "aws_ecs_task_definition" "python_task" {
   }
 }
 
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["099720109477"] # Canonical
-}
 
 resource "aws_launch_configuration" "ecs_launch_config" {
-  image_id             = "ami-072aaf1b030a33b6e" #data.aws_ami.ubuntu.id
+  image_id             = var.ecs_image_ami
   iam_instance_profile = aws_iam_instance_profile.ecs_agent.name
   security_groups      = [aws_security_group.allow_ecs.id]
   user_data            = "#!/bin/bash\necho ECS_CLUSTER=${aws_ecs_cluster.python_app_cluster.name} >> /etc/ecs/ecs.config"
@@ -97,7 +82,7 @@ resource "aws_launch_configuration" "ecs_launch_config" {
 
 resource "aws_autoscaling_group" "ecs_auto_scaling_group" {
   name                 = "asg"
-  vpc_zone_identifier  = [aws_subnet.public_subnet[0].id] #["subnet-78ab3600"] #
+  vpc_zone_identifier  = [aws_subnet.public_subnet[0].id]
   launch_configuration = aws_launch_configuration.ecs_launch_config.name
 
   desired_capacity          = 1
