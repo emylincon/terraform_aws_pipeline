@@ -9,7 +9,7 @@ pipeline{
                 cleanWs()
                 sh '''
                 git clone https://github.com/will118118/showcase_flask_app.git
-                
+
                 '''
             }
         }
@@ -26,7 +26,7 @@ pipeline{
                 }
             }
         }
-        
+
         stage("push image"){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'password', usernameVariable: 'username')]) {
@@ -44,7 +44,7 @@ pipeline{
                     aws ecs update-service --cluster "our-cluster" --service "python-service" --force-new-deployment --region eu-west-1
                 '''
                 }
-                
+
             }
         }
         stage("clean up"){
