@@ -46,7 +46,7 @@ resource "aws_ecs_task_definition" "python_task" {
   container_definitions = jsonencode([
     {
       name      = var.container_name
-      image     = "${var.ACCOUNT_ID}.dkr.ecr.${var.aws_region}.amazonaws.com/${aws_ecr_repository.python_app_repo.name}:latest"
+      image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${var.aws_region}.amazonaws.com/${aws_ecr_repository.python_app_repo.name}:latest"
       cpu       = 10
       memory    = 512
       essential = true
@@ -77,7 +77,6 @@ resource "aws_launch_configuration" "ecs_launch_config" {
   security_groups      = [aws_security_group.allow_ecs.id]
   user_data            = "#!/bin/bash\necho ECS_CLUSTER=${aws_ecs_cluster.python_app_cluster.name} >> /etc/ecs/ecs.config"
   instance_type        = "t2.medium"
-  # auto assign public IP
 }
 
 resource "aws_autoscaling_group" "ecs_auto_scaling_group" {

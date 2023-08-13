@@ -20,7 +20,7 @@ variable "env" {
 
 variable "python_project_repository_branch" {
   description = "Python Project Repository branch to connect to"
-  default     = "master"
+  default     = "main"
 }
 
 variable "artifacts_bucket_name" {
@@ -33,13 +33,6 @@ variable "container_port" {
   default     = 5002
 }
 
-variable "ACCOUNT_ID" {
-
-}
-
-variable "vpc_default_id" {
-  default = "vpc-d3dcdcab"
-}
 
 variable "container_name" {
   default = "python-app"
