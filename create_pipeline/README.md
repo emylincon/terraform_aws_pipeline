@@ -11,8 +11,8 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
-| <a name="provider_null"></a> [null](#provider\_null) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.12.0 |
+| <a name="provider_null"></a> [null](#provider\_null) | 3.2.1 |
 
 ## Modules
 
@@ -47,6 +47,8 @@ No modules.
 | [aws_route_table.public_rt](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table) | resource |
 | [aws_route_table_association.public_subnet_rta](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association) | resource |
 | [aws_s3_bucket.cicd_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
+| [aws_s3_bucket_acl.acl](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_acl) | resource |
+| [aws_s3_bucket_ownership_controls.control](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_ownership_controls) | resource |
 | [aws_security_group.allow_ecs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group.allow_elb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group.allow_http](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
@@ -55,13 +57,13 @@ No modules.
 | [aws_vpc.web_vpc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc) | resource |
 | [null_resource.clean_up](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [null_resource.image](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_policy_document.ecs_agent](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_ACCOUNT_ID"></a> [ACCOUNT\_ID](#input\_ACCOUNT\_ID) | n/a | `any` | n/a | yes |
 | <a name="input_artifacts_bucket_name"></a> [artifacts\_bucket\_name](#input\_artifacts\_bucket\_name) | S3 Bucket for storing artifacts | `string` | `"emeka18-cicd-artifacts-bucket"` | no |
 | <a name="input_availability_zones"></a> [availability\_zones](#input\_availability\_zones) | Example of a list variable | `list` | <pre>[<br>  "us-west-2a",<br>  "us-west-2b"<br>]</pre> | no |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS region to launch servers. | `string` | `"us-west-2"` | no |
@@ -70,8 +72,7 @@ No modules.
 | <a name="input_container_port"></a> [container\_port](#input\_container\_port) | python app container port | `number` | `5002` | no |
 | <a name="input_ecs_image_ami"></a> [ecs\_image\_ami](#input\_ecs\_image\_ami) | n/a | `string` | `"ami-072aaf1b030a33b6e"` | no |
 | <a name="input_env"></a> [env](#input\_env) | Targeted Deployment environment | `string` | `"Development"` | no |
-| <a name="input_python_project_repository_branch"></a> [python\_project\_repository\_branch](#input\_python\_project\_repository\_branch) | Python Project Repository branch to connect to | `string` | `"master"` | no |
-| <a name="input_vpc_default_id"></a> [vpc\_default\_id](#input\_vpc\_default\_id) | n/a | `string` | `"vpc-d3dcdcab"` | no |
+| <a name="input_python_project_repository_branch"></a> [python\_project\_repository\_branch](#input\_python\_project\_repository\_branch) | Python Project Repository branch to connect to | `string` | `"main"` | no |
 
 ## Outputs
 
